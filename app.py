@@ -7,7 +7,7 @@ from uuid import uuid4
 from pathlib import Path
 
 # Import the functions for video processing
-from license_plate_detection import process_video, load_yolo_model  # Assuming the core logic is in license_plate_detection.py
+from  main_sample_video_ocr import process_video, load_yolo_model  # Assuming the core logic is in license_plate_detection.py
 
 app = FastAPI()
 
