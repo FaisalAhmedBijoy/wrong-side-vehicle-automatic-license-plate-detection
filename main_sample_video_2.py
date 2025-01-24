@@ -4,7 +4,7 @@ from ultralytics import YOLO
 from collections import defaultdict
 
 # Load YOLO model
-def load_yolo_model(model_path='yolo11n.pt'):
+def load_yolo_model(model_path='models/yolo11n.pt'):
     """Load the YOLO model from the specified path."""
     return YOLO(model_path)
 
@@ -126,8 +126,8 @@ def process_video(video_path, model, line_y_blue, line_y_yellow, csv_file_path, 
 # Run the main function
 if __name__ == "__main__":
     model = load_yolo_model()
-    video_path = 'sample_video/input_video_2_15fps.mp4'  # Input video file
-    csv_file_path = 'processed_video/vehicle_counts.csv'  # Output CSV file for storing results
+    video_path = 'data/sample_video/input_video_2_15fps.mp4'  # Input video file
+    csv_file_path = 'logs/processed_video/vehicle_counts.csv'  # Output CSV file for storing results
     # line_y_blue = 430  # Blue line y-coordinate
     # line_y_yellow = 380  # Yellow line y-coordinate
     line_y_blue = 230  # Blue line y-coordinate
