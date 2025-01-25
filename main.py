@@ -5,7 +5,6 @@ from pathlib import Path
 from collections import defaultdict
 import easyocr
 
-
 # Load models
 vehicle_model = YOLO("models/yolo11l.pt")  # Vehicle detection model
 plate_model = YOLO("models/numer_plates_detection_model/license_plate_detector.pt")  # License plate detection model
@@ -16,13 +15,15 @@ output_dir = Path("output")
 output_dir.mkdir(exist_ok=True)  # Create output directory if it doesn't exist
 
 
-def process_video_realtime(input_path: str, fps_reduction: int = 4):
+def process_video_realtime(input_path: str, fps_reduction: int = 4, display_width: int = 640, display_height: int = 360):
     """
-    Processes a video in real-time with YOLO, displaying live output in an OpenCV window.
+    Processes a video in real-time with YOLO, displaying live output in an OpenCV window with smaller dimensions.
 
     Args:
         input_path (str): Path to the input video file.
         fps_reduction (int): Reduction factor for processing video frames. Higher values process fewer frames.
+        display_width (int): Width of the resized frame for display.
+        display_height (int): Height of the resized frame for display.
 
     Returns:
         str: Path to the processed video saved to disk.
@@ -68,8 +69,11 @@ def process_video_realtime(input_path: str, fps_reduction: int = 4):
             class_counts,
         )
 
-        # Display the frame in real-time
-        cv2.imshow("YOLO Real-Time Output", frame)
+        # Resize the frame for display
+        resized_frame = cv2.resize(frame, (display_width, display_height))
+
+        # Display the resized frame in real-time
+        cv2.imshow("YOLO Real-Time Output (Resized)", resized_frame)
 
         # Initialize the video writer when processing the first frame
         if writer is None:
