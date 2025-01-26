@@ -1,5 +1,5 @@
-import csv
 import cv2
+import pandas as pd
 from ultralytics import YOLO
 from collections import defaultdict
 import easyocr
@@ -23,7 +23,7 @@ def detect_and_recognize_number_plate(vehicle_crop, plate_model, ocr_reader):
         print(f"Error detecting/recognizing plate: {e}")
         return "Error"
 
-def process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, csv_writer, class_counts):
+def process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts):
     """Process a single frame to detect vehicles, count directions, and recognize plates."""
     vehicle_results = vehicle_model.track(frame, persist=True, classes=[2, 3, 5, 7], conf=0.6, imgsz=640)
     if vehicle_results[0].boxes.data is not None:
@@ -66,7 +66,15 @@ def process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, li
             if direction:
                 vehicle_crop = frame[y1:y2, x1:x2]
                 number_plate = detect_and_recognize_number_plate(vehicle_crop, plate_model, ocr_reader)
-                csv_writer.writerow([track_id, class_name, direction, conf, number_plate])
+
+                # Append results to the DataFrame
+                results_df.append({
+                    'Track ID': track_id,
+                    'Vehicle Class': class_name,
+                    'Direction': direction,
+                    'Confidence': conf,
+                    'Number Plate': number_plate
+                })
 
         cv2.putText(frame, f"Right: {direction_counts['right_direction']}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         cv2.putText(frame, f"Wrong: {direction_counts['wrong_direction']}", (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
@@ -82,7 +90,7 @@ def save_video(output_path, frame, frame_width, frame_height, fps, writer=None):
     writer.write(frame)
     return writer
 
-def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, csv_file_path, output_video_path, width=900, height=600, fps_reduction=1):
+def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path, width=900, height=600, fps_reduction=1):
     """Process the input video for vehicle detection, direction analysis, and plate recognition."""
     cap = cv2.VideoCapture(video_path)
     fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -93,48 +101,48 @@ def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blu
     direction_counts = {"right_direction": 0, "wrong_direction": 0}
     class_counts = defaultdict(lambda: {"right": 0, "wrong": 0})
 
+    results_df = []
+
     writer = None
     frame_count = 0
+    frame_skip = fps // fps_reduction
 
-    with open(csv_file_path, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['Track ID', 'Vehicle Class', 'Direction', 'Confidence', 'Number Plate'])
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
 
-        frame_skip = fps // fps_reduction
+        frame_count += 1
+        if frame_count % frame_skip != 0:
+            continue
 
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
+        frame = cv2.resize(frame, (width, height))
+        process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts)
+        writer = save_video(output_video_path, frame, width, height, fps, writer)
 
-            frame_count += 1
-            if frame_count % frame_skip != 0:
-                continue
-
-            frame = cv2.resize(frame, (width, height))
-            process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, csv_writer, class_counts)
-            writer = save_video(output_video_path, frame, width, height, fps, writer)
-
-            cv2.imshow("Processed Video", frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+        cv2.imshow("Processed Video", frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
     cap.release()
     if writer is not None:
         writer.release()
     cv2.destroyAllWindows()
 
+    # Convert results to a Pandas DataFrame and save
+    results_df = pd.DataFrame(results_df)
+    results_df.to_csv("vehicle_detection_results.csv", index=False)
+
 if __name__ == "__main__":
     vehicle_model = load_yolo_model(model_path='models/yolo11l.pt')
     plate_model = load_yolo_model(model_path='models/numer_plates_detection_model/license_plate_detector.pt')
     ocr_reader = easyocr.Reader(['en'], gpu=False)
 
-    video_path = 'data/sample_video/input_video_2.mp4'
-    csv_file_path = 'logs/processed_video/vehicle_counts.csv'
-    output_video_path = 'logs/processed_video/output_video.mp4'
+    video_path = 'data/sample_video/input_video_1.mp4'
+    output_video_path = 'logs/processed_video/output_video_2.mp4'
 
     line_y_blue = 240
     line_y_yellow = 200
     fps_reduction = 4
 
-    process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, csv_file_path, output_video_path, fps_reduction=fps_reduction)
+    process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path, fps_reduction=fps_reduction)
