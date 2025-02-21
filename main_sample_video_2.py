@@ -126,7 +126,7 @@ def process_video(video_path, model, line_y_blue, line_y_yellow, csv_file_path, 
 # Run the main function
 if __name__ == "__main__":
     model = load_yolo_model()
-    video_path = 'data/sample_video/input_video_2_15fps.mp4'  # Input video file
+    video_path = 'data/sample_video/input_video_2.mp4'  # Input video file
     csv_file_path = 'logs/processed_video/vehicle_counts.csv'  # Output CSV file for storing results
     # line_y_blue = 430  # Blue line y-coordinate
     # line_y_yellow = 380  # Yellow line y-coordinate
