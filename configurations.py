@@ -13,7 +13,10 @@ class Config:
 
         self.FPS_REDUCTION = self.get_required_env("FPS_REDUCTION") 
         self.LINE_Y_BLUE = self.get_required_env("LINE_Y_BLUE") 
-        self.LINE_Y_YELLOW = self.get_required_env("LINE_Y_YELLOW") 
+        self.LINE_Y_YELLOW = self.get_required_env("LINE_Y_YELLOW")
+
+        self.WINDOW_WIDTH = self.get_required_env("WINDOW_WIDTH") 
+        self.WINDOW_HEIGHT = self.get_required_env("WINDOW_HEIGHT") 
 
         
     def get_required_env(self, env_variable):

@@ -100,7 +100,9 @@ def process_video(video_path,
                   plate_model, 
                   ocr_reader, 
                   line_y_blue, 
-                  line_y_yellow, 
+                  line_y_yellow,
+                  window_width,
+                  window_height, 
                   output_video_path,
                   output_results_csv_path, 
                   fps_reduction=1):
@@ -110,8 +112,7 @@ def process_video(video_path,
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    width=900
-    height=600
+    print("frame_width: ",frame_width,"frame_height: ", frame_height)
 
     object_status = defaultdict(lambda: {"yellow": False, "blue": False})
     direction_counts = {"right_direction": 0, "wrong_direction": 0}
@@ -122,8 +123,8 @@ def process_video(video_path,
     writer = None
     frame_count = 0
 
-    print('fps',fps)
-    print('fps_reduction',fps_reduction)
+    print('fps: ',fps)
+    print('fps_reduction: ',fps_reduction)
     frame_skip = fps // fps_reduction
 
     while cap.isOpened():
@@ -135,9 +136,9 @@ def process_video(video_path,
         if frame_count % frame_skip != 0:
             continue
 
-        frame = cv2.resize(frame, (width, height))
+        frame = cv2.resize(frame, (window_width, window_height))
         process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts)
-        writer = save_video(output_video_path, frame, width, height, fps, writer)
+        writer = save_video(output_video_path, frame, window_width, window_height, fps, writer)
 
         cv2.imshow("Processed Video", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -145,7 +146,7 @@ def process_video(video_path,
 
     cap.release()
     if writer is not None:
-        writer.release()
+        writer.release()  
     cv2.destroyAllWindows()
 
     # Convert results to a Pandas DataFrame and save
@@ -166,12 +167,17 @@ if __name__ == "__main__":
 
     output_results_csv_path = config.OUTPUT_RESULTS_CSV_PATH
 
+    window_width = int(config.WINDOW_WIDTH)
+    window_height = int(config.WINDOW_HEIGHT)
+
     process_video(input_sample_video_path, 
                   vehicle_detection_model, 
                   license_plate_model, 
                   ocr_reader, 
                   line_y_blue, 
                   line_y_yellow, 
+                  window_width,
+                  window_height,
                   YOLO_output_video_path, 
                   output_results_csv_path, 
                   fps_reduction=fps_reduction)
