@@ -3,6 +3,10 @@ import cv2
 from ultralytics import YOLO
 from collections import defaultdict
 
+from configurations import Config
+
+config = Config()
+
 # Load YOLO model
 def load_yolo_model(model_path='models/yolo11n.pt'):
     """Load the YOLO model from the specified path."""
@@ -125,11 +129,14 @@ def process_video(video_path, model, line_y_blue, line_y_yellow, csv_file_path, 
 
 # Run the main function
 if __name__ == "__main__":
-    model = load_yolo_model()
-    video_path = 'data/sample_video/input_video_1.mp4'  # Input video file
-    csv_file_path = 'logs/processed_video/vehicle_counts.csv'  # Output CSV file for storing results
-    # line_y_blue = 430  # Blue line y-coordinate
-    # line_y_yellow = 380  # Yellow line y-coordinate
-    line_y_blue = 430  # Blue line y-coordinate
-    line_y_yellow = 400  # Yellow line y-coordinate
-    process_video(video_path, model, line_y_blue, line_y_yellow, csv_file_path)
+    # model = load_yolo_model()
+    vehicle_detection_model = load_yolo_model(model_path=config.VEHICLE_DETECTION_MODEL)
+
+    input_sample_video_path = config.INPUT_SAMPLE_VIDEO_PATH
+
+    output_results_csv_path = config.OUTPUT_RESULTS_CSV_PATH
+   
+    line_y_blue = int(config.LINE_Y_BLUE)
+    line_y_yellow = int(config.LINE_Y_YELLOW)
+    
+    process_video(input_sample_video_path, vehicle_detection_model, line_y_blue, line_y_yellow, output_results_csv_path)

@@ -1,8 +1,10 @@
 import cv2
+import easyocr
 import pandas as pd
+
 from ultralytics import YOLO
 from collections import defaultdict
-import easyocr
+
 from configurations import Config
 
 config = Config()
@@ -93,7 +95,15 @@ def save_video(output_path, frame, frame_width, frame_height, fps, writer=None):
     writer.write(frame)
     return writer
 
-def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path,output_results_csv_path, fps_reduction=1):
+def process_video(video_path, 
+                  vehicle_model, 
+                  plate_model, 
+                  ocr_reader, 
+                  line_y_blue, 
+                  line_y_yellow, 
+                  output_video_path,
+                  output_results_csv_path, 
+                  fps_reduction=1):
     """Process the input video for vehicle detection, direction analysis, and plate recognition."""
     cap = cv2.VideoCapture(video_path)
     fps = int(cap.get(cv2.CAP_PROP_FPS))
