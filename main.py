@@ -28,9 +28,22 @@ def detect_and_recognize_number_plate(vehicle_crop, plate_model, ocr_reader):
         print(f"Error detecting/recognizing plate: {e}")
         return "Error"
 
-def process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts):
+def process_frame(frame, 
+                  vehicle_model, 
+                  plate_model, 
+                  ocr_reader, 
+                  line_y_blue, 
+                  line_y_yellow, 
+                  object_status, 
+                  direction_counts, 
+                  results_df, 
+                  class_counts):
     """Process a single frame to detect vehicles, count directions, and recognize plates."""
-    vehicle_results = vehicle_model.track(frame, persist=True, classes=[2, 3, 5, 7], conf=0.6, imgsz=640)
+    vehicle_results = vehicle_model.track(frame, 
+                                          persist=True, 
+                                          classes=[2, 3, 5, 7], 
+                                          conf=0.6, 
+                                          imgsz=640)
     if vehicle_results[0].boxes.data is not None:
         boxes = vehicle_results[0].boxes.xyxy.cpu().numpy()
         class_indices = vehicle_results[0].boxes.cls.int().cpu().numpy().tolist()
@@ -131,11 +144,11 @@ def process_video(video_path,
         ret, frame = cap.read()
         if not ret:
             break
-
+        
         frame_count += 1
         if frame_count % frame_skip != 0:
             continue
-
+        
         frame = cv2.resize(frame, (window_width, window_height))
         process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts)
         writer = save_video(output_video_path, frame, window_width, window_height, fps, writer)
