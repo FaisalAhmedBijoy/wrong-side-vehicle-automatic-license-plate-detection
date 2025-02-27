@@ -2,6 +2,19 @@ import csv
 import cv2
 from ultralytics import YOLO
 from collections import defaultdict
+from configurations import Config
+
+config = Config()
+
+VEHICLE_DETECTION_MODEL=config.VEHICLE_DETECTION_MODEL
+LICENSE_PLATE_DETECTION_MODEL = config.LICENSE_PLATE_DETECTION_MODEL
+INPUT_SAMPLE_VIDEO_PATH = config.INPUT_SAMPLE_VIDEO_PATH
+YOLO_OUTPUT_VIDEO_PATH = config.YOLO_OUTPUT_VIDEO_PATH
+OUTPUT_RESULTS_CSV_PATH= config.OUTPUT_RESULTS_CSV_PATH
+FPS_REDUCTION = config.FPS_REDUCTION
+LINE_Y_BLUE = config.LINE_Y_BLUE
+LINE_Y_YELLOW = config.LINE_Y_YELLOW
+
 
 # Load YOLO model
 def load_yolo_model(model_path='models/yolo11n.pt'):
@@ -18,7 +31,16 @@ def process_frame(frame, model, line_y_blue, line_y_yellow, object_status, direc
     """
     Process a single frame to detect vehicles, track their directions, and update the counts.
     """
-    results = model.track(frame, persist=True, classes=[2, 3, 5, 7])
+
+    """
+    1: 'bicycle',
+    2: 'car',
+    3: 'motorcycle',
+    5: 'bus',
+    7: 'truck',
+    """
+    vechicle_classes = [1, 2, 3, 5, 7]
+    results = model.track(frame, persist=True, classes=vechicle_classes)
     
     if results[0].boxes.data is not None:
         boxes = results[0].boxes.xyxy.cpu().numpy()

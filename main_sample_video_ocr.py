@@ -3,6 +3,9 @@ import pandas as pd
 from ultralytics import YOLO
 from collections import defaultdict
 import easyocr
+from configurations import Config
+
+config = Config()
 
 def load_yolo_model(model_path):
     """Load the YOLO model from the specified path."""
@@ -90,12 +93,15 @@ def save_video(output_path, frame, frame_width, frame_height, fps, writer=None):
     writer.write(frame)
     return writer
 
-def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path, width=900, height=600, fps_reduction=1):
+def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path,output_results_csv_path, fps_reduction=1):
     """Process the input video for vehicle detection, direction analysis, and plate recognition."""
     cap = cv2.VideoCapture(video_path)
     fps = int(cap.get(cv2.CAP_PROP_FPS))
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    width=900
+    height=600
 
     object_status = defaultdict(lambda: {"yellow": False, "blue": False})
     direction_counts = {"right_direction": 0, "wrong_direction": 0}
@@ -105,6 +111,9 @@ def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blu
 
     writer = None
     frame_count = 0
+
+    print('fps',fps)
+    print('fps_reduction',fps_reduction)
     frame_skip = fps // fps_reduction
 
     while cap.isOpened():
@@ -131,18 +140,28 @@ def process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blu
 
     # Convert results to a Pandas DataFrame and save
     results_df = pd.DataFrame(results_df)
-    results_df.to_csv("vehicle_detection_results.csv", index=False)
+    results_df.to_csv(output_results_csv_path, index=False)
 
 if __name__ == "__main__":
-    vehicle_model = load_yolo_model(model_path='models/yolo11l.pt')
-    plate_model = load_yolo_model(model_path='models/numer_plates_detection_model/license_plate_detector.pt')
+    vehicle_detection_model = load_yolo_model(model_path=config.VEHICLE_DETECTION_MODEL)
+    license_plate_model = load_yolo_model(model_path=config.LICENSE_PLATE_DETECTION_MODEL)
     ocr_reader = easyocr.Reader(['en'], gpu=False)
 
-    video_path = 'data/sample_video/input_video_1.mp4'
-    output_video_path = 'logs/processed_video/output_video_2.mp4'
+    input_sample_video_path = config.INPUT_SAMPLE_VIDEO_PATH
+    YOLO_output_video_path = config.YOLO_OUTPUT_VIDEO_PATH
 
-    line_y_blue = 240
-    line_y_yellow = 200
-    fps_reduction = 4
+    line_y_blue = int(config.LINE_Y_BLUE)
+    line_y_yellow = int(config.LINE_Y_YELLOW)
+    fps_reduction = int(config.FPS_REDUCTION)
 
-    process_video(video_path, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, output_video_path, fps_reduction=fps_reduction)
+    output_results_csv_path = config.OUTPUT_RESULTS_CSV_PATH
+
+    process_video(input_sample_video_path, 
+                  vehicle_detection_model, 
+                  license_plate_model, 
+                  ocr_reader, 
+                  line_y_blue, 
+                  line_y_yellow, 
+                  YOLO_output_video_path, 
+                  output_results_csv_path, 
+                  fps_reduction=fps_reduction)

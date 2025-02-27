@@ -1,0 +1,10 @@
+Track ID,Vehicle Class,Direction
+2,car,Right,0.70808053
+12,car,Right,0.41099468
+3,truck,Right,0.74703956
+25,car,Wrong,0.7464326
+29,car,Right,0.8080728
+58,car,Right,0.8136872
+72,car,Wrong,0.64190257
+42,truck,Right,0.858719
+71,car,Right,0.7735687
