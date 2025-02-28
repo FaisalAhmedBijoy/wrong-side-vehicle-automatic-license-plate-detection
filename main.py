@@ -13,15 +13,25 @@ def load_yolo_model(model_path):
     """Load the YOLO model from the specified path."""
     return YOLO(model_path)
 
-def detect_and_recognize_number_plate(vehicle_crop, plate_model, ocr_reader):
+def detect_and_recognize_number_plate(frame,vehicle_crop, plate_model, ocr_reader):
     """Detect and recognize the number plate in the given vehicle crop."""
     try:
         plate_results = plate_model.predict(vehicle_crop, conf=0.5)
         if plate_results[0].boxes.data is not None and len(plate_results[0].boxes.xyxy) > 0:
             plate_box = plate_results[0].boxes.xyxy[0].cpu().numpy().astype(int)
             x1, y1, x2, y2 = plate_box
+
+            print('plate_box: ',plate_box)
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
+            # cv2.putText(frame, f"Plate Box: ", (x1-10, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 1)
+           
+            
             plate_crop = vehicle_crop[y1:y2, x1:x2]
+            
             ocr_results = ocr_reader.readtext(plate_crop, detail=0)
+            cv2.imshow("License Plate Box", vehicle_crop)
+            cv2.imshow(f"Results", plate_crop)
+
             return " ".join(ocr_results)
         return "No Plate Detected"
     except Exception as e:
@@ -83,7 +93,8 @@ def process_frame(frame,
 
             if direction:
                 vehicle_crop = frame[y1:y2, x1:x2]
-                number_plate = detect_and_recognize_number_plate(vehicle_crop, plate_model, ocr_reader)
+                
+                number_plate = detect_and_recognize_number_plate(frame, vehicle_crop, plate_model, ocr_reader)
 
                 # Append results to the DataFrame
                 results_df.append({
