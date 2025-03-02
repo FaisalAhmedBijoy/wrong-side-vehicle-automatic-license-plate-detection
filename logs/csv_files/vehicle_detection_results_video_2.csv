@@ -1,42 +1,42 @@
 Track ID,Vehicle Class,Direction,Confidence,Number Plate
-1,car,Wrong,0.933542,0752 G JR
-1,car,Wrong,0.92927104,752 6 JR
-2,car,Wrong,0.88750803,2835 BSY
-2,car,Wrong,0.8832061,2835 Bsy
+1,car,Wrong,0.933542,1[10752 6 JR
+1,car,Wrong,0.92927104,100752 6 JR
+2,car,Wrong,0.88750803,02835 BSq
+2,car,Wrong,0.8832061,02835 Bsy
 9,car,Wrong,0.9156934,9079 GCH
 10,car,Wrong,0.913458,No Plate Detected
-10,car,Wrong,0.89551234,MA LBLL CC
-13,car,Wrong,0.91529816,DNU
-13,car,Wrong,0.92634827,5553 DN4
-12,car,Wrong,0.6287446,3693 FSG
-15,car,Wrong,0.92427945,0357L BNI
-15,car,Wrong,0.90945494,103574 BNW
+10,car,Wrong,0.89551234,@MA LBLLCC
+13,car,Wrong,0.91529816,45553 DNu
+13,car,Wrong,0.92634827,45553 DM4
+12,car,Wrong,0.6287446,9 3693 FSG
+15,car,Wrong,0.92427945,14357 L BNW
+15,car,Wrong,0.90945494,03574 BNI
 16,car,Wrong,0.92936844,00262 HFP
-16,car,Wrong,0.930486,4Q262 HEPI
+16,car,Wrong,0.930486,40262 HEFPI
 18,car,Wrong,0.92499924,[8934 FLR
-18,car,Wrong,0.9260643,8934 FR
-18,car,Wrong,0.921864,[8934 FVR
+18,car,Wrong,0.9260643,[8934 FR
+18,car,Wrong,0.921864,8934 FVR
 19,car,Wrong,0.918197,5280 DLY
-19,car,Wrong,0.92701143,5280 DLK
-20,car,Wrong,0.9007169,9916 GHS
-20,car,Wrong,0.89317435,GHS
-23,car,Wrong,0.9338366,7963 JVJ
-23,car,Wrong,0.9274663,7963 JVJ
-27,motorcycle,Wrong,0.61240137,
+19,car,Wrong,0.92701143,5280 DLY
+20,car,Wrong,0.9007169,09916 GHS
+20,car,Wrong,0.89317435,9916 &HS]
+23,car,Wrong,0.9338366,47963 JVJ
+23,car,Wrong,0.9274663,07963 JVJ
+27,motorcycle,Wrong,0.61240137,64]
 27,motorcycle,Wrong,0.65207547,
 27,motorcycle,Wrong,0.6682998,
-24,car,Wrong,0.9288395,3092 FRX
-24,car,Wrong,0.9087863,3092 FRX]
+24,car,Wrong,0.9288395,3092 FRY
+24,car,Wrong,0.9087863,[30g2 FRX]
 27,motorcycle,Wrong,0.6350345,No Plate Detected
 27,motorcycle,Wrong,0.61684895,
 27,motorcycle,Wrong,0.73753256,No Plate Detected
 27,motorcycle,Wrong,0.76966685,No Plate Detected
 25,car,Wrong,0.94056463,Ma 3043 DF]
-25,car,Wrong,0.9350185,IVa 30L3 DF
+25,car,Wrong,0.9350185,Ia 3043 DF
 25,car,Wrong,0.9364784,Va 3043 dF
 26,car,Wrong,0.9400678,1024 DRJ
 26,car,Wrong,0.94080406,1024 DRJ
-29,car,Wrong,0.94515216,8174 HoL
-29,car,Wrong,0.9363802,8174hGL
+29,car,Wrong,0.94515216,9124HLL
+29,car,Wrong,0.9363802,[8IZ4 hGL
 30,car,Wrong,0.92027193,423L DZK
-30,car,Wrong,0.92133,4234 DZK
+30,car,Wrong,0.92133,04234 DZK

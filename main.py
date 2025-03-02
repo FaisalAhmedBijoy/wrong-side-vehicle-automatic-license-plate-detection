@@ -1,6 +1,7 @@
 import cv2
 import easyocr
 import pandas as pd
+import numpy as np
 
 from ultralytics import YOLO
 from collections import defaultdict
@@ -13,6 +14,19 @@ def load_yolo_model(model_path):
     """Load the YOLO model from the specified path."""
     return YOLO(model_path)
 
+
+def preprocess_plate(plate_crop):
+    """Apply preprocessing to enhance the license plate image for OCR."""
+    try:
+        # Convert to grayscale
+        gray = cv2.cvtColor(plate_crop, cv2.COLOR_BGR2GRAY)
+        return gray
+
+    except Exception as e:
+        print(f"Error in plate preprocessing: {e}")
+        return plate_crop
+
+
 def detect_and_recognize_number_plate(frame,vehicle_crop, plate_model, ocr_reader):
     """Detect and recognize the number plate in the given vehicle crop."""
     try:
@@ -24,13 +38,13 @@ def detect_and_recognize_number_plate(frame,vehicle_crop, plate_model, ocr_reade
             print('plate_box: ',plate_box)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 1)
             # cv2.putText(frame, f"Plate Box: ", (x1-10, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 1)
-           
-            
+
             plate_crop = vehicle_crop[y1:y2, x1:x2]
+            processed_plate = preprocess_plate(plate_crop)  # Apply image processing
             
-            ocr_results = ocr_reader.readtext(plate_crop, detail=0)
+            ocr_results = ocr_reader.readtext(processed_plate, detail=0)
             cv2.imshow("License Plate Box", vehicle_crop)
-            cv2.imshow(f"Results", plate_crop)
+            cv2.imshow(f"Results", processed_plate)
 
             return " ".join(ocr_results)
         return "No Plate Detected"
@@ -105,8 +119,8 @@ def process_frame(frame,
                     'Number Plate': number_plate
                 })
 
-        cv2.putText(frame, f"Right: {direction_counts['right_direction']}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.putText(frame, f"Wrong: {direction_counts['wrong_direction']}", (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        # cv2.putText(frame, f"Right: {direction_counts['right_direction']}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        # cv2.putText(frame, f"Wrong: {direction_counts['wrong_direction']}", (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
     cv2.line(frame, (50, line_y_yellow), (frame.shape[1] - 50, line_y_yellow), (0, 255, 255), 3)
     cv2.line(frame, (50, line_y_blue), (frame.shape[1] - 50, line_y_blue), (255, 0, 0), 3)
