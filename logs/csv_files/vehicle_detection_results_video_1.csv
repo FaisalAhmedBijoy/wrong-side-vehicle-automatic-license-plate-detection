@@ -1,74 +1,84 @@
 Track ID,Vehicle Class,Direction,Confidence,Number Plate
-2,car,Right,0.8992503,Error
-2,car,Right,0.89601564,Error
-2,car,Right,0.87967944,Error
-2,car,Right,0.87285566,Error
-2,car,Right,0.8622417,Error
-3,car,Right,0.8733542,Error
-2,car,Right,0.8519548,Error
-3,car,Right,0.88832694,Error
-2,car,Right,0.83572567,Error
-3,car,Right,0.8633165,Error
-4,car,Right,0.76462114,No Plate Detected
-1,truck,Right,0.92341036,No Plate Detected
-2,car,Right,0.848194,Error
-3,car,Right,0.87320566,No Plate Detected
-4,car,Right,0.8894493,Error
-1,truck,Right,0.93127733,No Plate Detected
-2,car,Right,0.8246754,Error
-3,car,Right,0.89952844,No Plate Detected
-4,car,Right,0.88165927,Error
-1,truck,Right,0.93828785,No Plate Detected
-2,car,Right,0.8266321,Error
-3,car,Right,0.8819329,Error
-4,car,Right,0.9026852,Error
-2,car,Right,0.81776667,Error
-3,car,Right,0.8761437,Error
-4,car,Right,0.88841397,Error
-2,car,Right,0.82253546,Error
-4,car,Right,0.921993,Error
-2,car,Right,0.8382828,Error
-4,car,Right,0.8742636,Error
-2,car,Right,0.8037981,Error
-2,car,Right,0.815944,Error
-2,car,Right,0.7613642,Error
-2,car,Right,0.7945704,Error
-2,car,Right,0.8239417,Error
-2,car,Right,0.7964226,Error
-2,car,Right,0.80242,Error
-2,car,Right,0.80345863,Error
-2,car,Right,0.81507194,Error
-2,car,Right,0.8044091,Error
-2,car,Right,0.7737973,Error
-2,car,Right,0.7524974,Error
-2,car,Right,0.7967912,Error
-2,car,Right,0.76051414,Error
-2,car,Right,0.7708513,Error
-2,car,Right,0.82015055,Error
-2,car,Right,0.8104896,Error
-2,car,Right,0.73713356,Error
-2,car,Right,0.77697283,Error
-2,car,Right,0.69646484,Error
-2,car,Right,0.75765735,Error
-2,car,Right,0.63097197,Error
-2,car,Right,0.69009465,Error
-2,car,Right,0.7677424,Error
-2,car,Right,0.7213348,Error
-2,car,Right,0.62155664,Error
-2,car,Right,0.69792306,Error
-2,car,Right,0.6020722,Error
-5,car,Right,0.8565285,Error
-2,car,Right,0.6422251,Error
-5,car,Right,0.86455274,No Plate Detected
-2,car,Right,0.66613835,Error
-5,car,Right,0.8888435,Error
-18,car,Right,0.86575925,Error
-18,car,Right,0.879767,Error
-18,car,Right,0.8864624,Error
-15,truck,Right,0.942042,Error
-15,truck,Right,0.9495509,No Plate Detected
-15,truck,Right,0.9402689,Error
-15,truck,Right,0.9485823,Error
-24,car,Right,0.8686975,Error
-24,car,Right,0.88031244,Error
-24,car,Right,0.8583029,Error
+2,car,Wrong,0.87285566,No Plate Detected
+2,car,Wrong,0.8622417,No Plate Detected
+3,car,Wrong,0.8733542,No Plate Detected
+3,car,Wrong,0.88832694,No Plate Detected
+3,car,Wrong,0.8633165,No Plate Detected
+3,car,Wrong,0.87320566,
+3,car,Wrong,0.89952844,
+1,truck,Wrong,0.93828785,
+3,car,Wrong,0.8819329,No Plate Detected
+1,truck,Wrong,0.9305903,
+3,car,Wrong,0.8761437,No Plate Detected
+1,truck,Wrong,0.94667155,
+1,truck,Wrong,0.9534856,
+1,truck,Wrong,0.9604431,No Plate Detected
+1,truck,Wrong,0.9607433,No Plate Detected
+1,truck,Wrong,0.90916884,No Plate Detected
+17,car,Right,0.8215312,No Plate Detected
+17,car,Right,0.8211471,No Plate Detected
+17,car,Right,0.83416164,No Plate Detected
+17,car,Right,0.804958,No Plate Detected
+17,car,Right,0.80586004,No Plate Detected
+17,car,Right,0.81182534,No Plate Detected
+17,car,Right,0.8232886,No Plate Detected
+17,car,Right,0.81814736,No Plate Detected
+17,car,Right,0.8288584,No Plate Detected
+17,car,Right,0.8096497,No Plate Detected
+17,car,Right,0.79043555,No Plate Detected
+17,car,Right,0.8122842,No Plate Detected
+17,car,Right,0.816457,No Plate Detected
+17,car,Right,0.7887287,No Plate Detected
+17,car,Right,0.80323654,No Plate Detected
+17,car,Right,0.8109017,No Plate Detected
+17,car,Right,0.81725377,No Plate Detected
+5,car,Right,0.8256927,No Plate Detected
+17,car,Right,0.790365,No Plate Detected
+5,car,Right,0.81730235,No Plate Detected
+17,car,Right,0.800798,No Plate Detected
+5,car,Right,0.80761826,No Plate Detected
+17,car,Right,0.8228492,No Plate Detected
+5,car,Right,0.83295876,No Plate Detected
+17,car,Right,0.7969605,No Plate Detected
+5,car,Right,0.82678396,No Plate Detected
+17,car,Right,0.7989533,No Plate Detected
+5,car,Right,0.8373283,No Plate Detected
+17,car,Right,0.7839372,No Plate Detected
+17,car,Right,0.80736583,No Plate Detected
+17,car,Right,0.7951167,No Plate Detected
+17,car,Right,0.80454177,No Plate Detected
+17,car,Right,0.732656,No Plate Detected
+17,car,Right,0.7323329,No Plate Detected
+17,car,Right,0.73903304,No Plate Detected
+17,car,Right,0.6758364,No Plate Detected
+17,car,Right,0.6763452,No Plate Detected
+17,car,Right,0.7717078,No Plate Detected
+17,car,Right,0.733675,No Plate Detected
+17,car,Right,0.73624206,No Plate Detected
+17,car,Right,0.692039,No Plate Detected
+17,car,Right,0.62531656,No Plate Detected
+18,car,Right,0.82852906,No Plate Detected
+18,car,Right,0.85592484,No Plate Detected
+18,car,Right,0.81534535,No Plate Detected
+18,car,Right,0.8393054,No Plate Detected
+18,car,Right,0.81376684,No Plate Detected
+18,car,Right,0.84553087,No Plate Detected
+18,car,Right,0.8539788,No Plate Detected
+18,car,Right,0.8356862,No Plate Detected
+15,truck,Right,0.8982156,No Plate Detected
+15,truck,Right,0.8960507,No Plate Detected
+15,truck,Right,0.9242484,No Plate Detected
+15,truck,Right,0.899562,No Plate Detected
+15,truck,Right,0.9335567,
+15,truck,Right,0.92938143,No Plate Detected
+15,truck,Right,0.9284759,No Plate Detected
+15,truck,Right,0.942042,No Plate Detected
+24,car,Right,0.8163298,No Plate Detected
+24,car,Right,0.81991744,No Plate Detected
+24,car,Right,0.8352817,No Plate Detected
+24,car,Right,0.82310784,No Plate Detected
+24,car,Right,0.8483401,No Plate Detected
+24,car,Right,0.84027356,No Plate Detected
+24,car,Right,0.84949934,No Plate Detected
+24,car,Right,0.84642136,No Plate Detected
+24,car,Right,0.8686975,No Plate Detected

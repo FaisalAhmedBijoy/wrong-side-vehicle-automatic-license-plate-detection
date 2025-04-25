@@ -7,8 +7,11 @@ from ultralytics import YOLO
 from collections import defaultdict
 
 from configurations import Config
+from road_line_draw_algo import detect_road_lines
 
 config = Config()
+line_y_blue_list = []
+line_y_yellow_list = []
 
 def load_yolo_model(model_path):
     """Load the YOLO model from the specified path."""
@@ -175,6 +178,17 @@ def process_video(video_path,
             continue
         
         frame = cv2.resize(frame, (window_width, window_height))
+
+        # Process the line
+        line_y_blue, line_y_yellow = detect_road_lines(frame)
+        line_y_blue_list.append(line_y_blue)
+        line_y_yellow_list.append(line_y_yellow)
+        # make average of line_y_blue and line_y_yellow
+        line_y_blue = int(np.mean(line_y_blue_list))
+        line_y_yellow = int(np.mean(line_y_yellow_list))
+     
+        print('by algo line_y_blue: ',line_y_blue, 'by algo line_y_yellow: ',line_y_yellow)
+
         process_frame(frame, vehicle_model, plate_model, ocr_reader, line_y_blue, line_y_yellow, object_status, direction_counts, results_df, class_counts)
         writer = save_video(output_video_path, frame, window_width, window_height, fps, writer)
 

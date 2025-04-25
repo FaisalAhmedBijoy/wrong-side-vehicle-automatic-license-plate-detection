@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wrong Side Vehicle Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function showOutput() {
+        document.getElementById("outputSection").classList.remove("hidden");
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-red-600 text-white p-4 shadow-md">
+      <h1 class="text-2xl font-bold text-center">
+        Wrong Side Vehicle Detection System
+      </h1>
+    </header>
+
+    <main class="p-6">
+      <!-- Submit Button -->
+      <div class="text-center mb-6">
+        <button
+          onclick="showOutput()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"
+        >
+          Submit
+        </button>
+      </div>
+
+      <!-- Video Display Area -->
+      <div
+        id="outputSection"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden"
+      >
+        <!-- Original Video -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-2">Original Video</h2>
+          <div class="aspect-video w-full">
+            <video controls class="rounded w-full h-full object-cover">
+              <source src="input_video_2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- Detection Result Video -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-2">Detection Result</h2>
+          <div class="aspect-video w-full">
+            <video controls class="rounded w-full h-full object-cover">
+              <source src="output_video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
