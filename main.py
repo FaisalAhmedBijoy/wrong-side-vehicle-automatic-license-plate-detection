@@ -67,8 +67,7 @@ def process_frame(frame,
                   class_counts):
     """Process a single frame to detect vehicles, count directions, and recognize plates."""
     vehicle_results = vehicle_model.track(frame, 
-                                          persist=True, 
-                                          classes=[2, 3, 5, 7], 
+                                          persist=True,                    
                                           conf=0.6, 
                                           imgsz=640)
     if vehicle_results[0].boxes.data is not None:

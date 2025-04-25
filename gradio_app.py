@@ -6,12 +6,12 @@ from collections import defaultdict
 import easyocr
 
 # Load models
-vehicle_model = YOLO("models/yolo11l.pt")  # Vehicle detection model
+vehicle_model = YOLO("models/vehicle_detection_models/vechicle_yolo_model.pt")  # Vehicle detection model
 plate_model = YOLO("models/numer_plates_detection_model/license_plate_detector.pt")  # License plate detection model
 ocr_reader = easyocr.Reader(['en'], gpu=False)  # OCR reader for license plate recognition
 
 # Paths
-output_dir = Path("output")
+output_dir = Path("outputs")
 output_dir.mkdir(exist_ok=True)  # Create output directory if it doesn't exist
 
 

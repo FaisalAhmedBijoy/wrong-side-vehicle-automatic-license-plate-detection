@@ -1,118 +1,66 @@
 Track ID,Vehicle Class,Direction,Confidence,Number Plate
-3,car,Right,0.91500324,70 8589 BXT
-3,car,Right,0.926712,10 8589 BXT
-3,car,Right,0.9381022,14 8589 BXT
-3,car,Right,0.92248386,08589 BXT
-3,car,Right,0.9332256,08589 BXT
-3,car,Right,0.9201596,08589 BXT
-1,car,Right,0.91195244,[10752 6 JR
-3,car,Right,0.9236075,IL 8589 BXT
-1,car,Right,0.9206582,1L0752 G JR
-3,car,Right,0.9029966,008509 BXT
-1,car,Right,0.91730565,L0752 G JR_
-3,car,Right,0.8853597,0 8589 BXT
-1,car,Right,0.90571976,"L0752 G,JR"
-3,car,Right,0.89956653,No Plate Detected
-1,car,Right,0.91627234,L0752 G JR
-2,car,Right,0.8862527,02835 BSY
-3,car,Right,0.81593466,No Plate Detected
-1,car,Right,0.92015606,L0752 6 JR
-2,car,Right,0.88750803,02835 BSq
-3,car,Right,0.82391506,No Plate Detected
-1,car,Right,0.9245574,L07520JR
-2,car,Right,0.8832061,02835 Bsy
-3,car,Right,0.78193367,No Plate Detected
-1,car,Right,0.92186505,[0752 E JR
-2,car,Right,0.88492894,2835 BSY
-1,car,Right,0.912229,"[0752 G,JR"
-2,car,Right,0.83454156,02835 BSY
-1,car,Right,0.9206724,[1p752 G JR
-2,car,Right,0.84213704,[22835 BSY
-9,car,Wrong,0.9112541,9079 GCH
-10,car,Wrong,0.92623055,bMA 8LL CC
-1,car,Right,0.90821356,[0752 G JR
-2,car,Right,0.8329952,[2835 BSY
-9,car,Wrong,0.91280794,9079 GCH
-1,car,Right,0.9015897,[0752 G JRI
-2,car,Right,0.84876657,[22835 BSP
-9,car,Wrong,0.919815,9079 GCH
-1,car,Right,0.89611983,No Plate Detected
-2,car,Right,0.853013,1835 BSD
-9,car,Wrong,0.92541057,9079 GCH
-1,car,Right,0.8992151,No Plate Detected
-2,car,Right,0.873228,42035 BSY
-9,car,Wrong,0.9156934,9079 GCH
-1,car,Right,0.8686153,No Plate Detected
-2,car,Right,0.88980407,02835BSY
-9,car,Wrong,0.9193373,9079 GCH
-1,car,Right,0.7769868,
-2,car,Right,0.8699898,02875_BS
-9,car,Wrong,0.9159425,9079 Gch
-2,car,Right,0.7598779,12835 BSY
-9,car,Wrong,0.9147424,9079 GCH
-13,car,Wrong,0.9311393,355530n
-2,car,Right,0.75492316,42835 BSM
-9,car,Wrong,0.914821,9079 GcH
-2,car,Right,0.8429694,42835 BSU
-9,car,Wrong,0.9201287,9079 GCH
-2,car,Right,0.7072962,No Plate Detected
-9,car,Wrong,0.9309403,No Plate Detected
-9,car,Wrong,0.92019963,No Plate Detected
-9,car,Wrong,0.92949206,No Plate Detected
-9,car,Wrong,0.9210389,No Plate Detected
-9,car,Wrong,0.92872304,No Plate Detected
-9,car,Wrong,0.8812123,No Plate Detected
-9,car,Wrong,0.8666674,No Plate Detected
-9,car,Wrong,0.7550088,No Plate Detected
-9,car,Wrong,0.7340541,No Plate Detected
-9,car,Wrong,0.775298,No Plate Detected
-15,car,Wrong,0.92389864,103574 BNI
-16,car,Wrong,0.9230199,40262 HFP
-18,car,Wrong,0.93644065,[8934 FMR-
-18,car,Wrong,0.93689173,[8934 FIR
-19,car,Wrong,0.9295675,5280 DLY
-20,car,Wrong,0.87369376,9916 GHS}
-20,car,Wrong,0.89866775,99161GHS
-20,car,Wrong,0.9099102,09916 oHs]
-20,car,Wrong,0.91221046,9916 UHS
-20,car,Wrong,0.9007169,09916 GHS
-20,car,Wrong,0.89317435,9916 &HS]
-20,car,Wrong,0.8992025,9916 HS]
-20,car,Wrong,0.9074556,9916 UHS
-20,car,Wrong,0.9078353,9916 OHS
-23,car,Wrong,0.92895883,[7963 JVJ
-20,car,Wrong,0.9080431,9916  HS
-23,car,Wrong,0.93585175,07963 JVJ
-20,car,Wrong,0.9190879,9916845
-20,car,Wrong,0.915912,09916 GHS
-20,car,Wrong,0.9178157,09916 GHS
-20,car,Wrong,0.91896003,L9916 GHS
-20,car,Wrong,0.9128522,099116 CHS}
-20,car,Wrong,0.90919304,[19916 GHS]
-20,car,Wrong,0.85232705,LE 6hb]
-24,car,Wrong,0.9190444,030g2 FRX 
-20,car,Wrong,0.77373135,No Plate Detected
-20,car,Wrong,0.7242603,No Plate Detected
-20,car,Wrong,0.82908064,
-25,car,Wrong,0.9384548,MA 3043 DFI
-26,car,Wrong,0.93827623,1O24DRJ
-26,car,Wrong,0.9378013,1024 DRJ
-29,car,Wrong,0.9393577,8124 HGL
-30,car,Wrong,0.92467844,L2B4DZ
-30,car,Wrong,0.916524,4234DZK
-30,car,Wrong,0.9114948,L234DZKI
-30,car,Wrong,0.9090559,L2BLDZK
-30,car,Wrong,0.92027193,423L DZK
-30,car,Wrong,0.92133,04234 DZK
-30,car,Wrong,0.9085786,423L DZKI
-30,car,Wrong,0.89461136,4234 DZK
-31,car,Wrong,0.93797106,'01o526_HGN
-30,car,Wrong,0.9073041,4234dZK
-31,car,Wrong,0.933698,10j0526_HGN
-30,car,Wrong,0.9291587,423 DZK
-31,car,Wrong,0.93336535,[000526 Hon
-30,car,Wrong,0.9169029,4234DZKk
-31,car,Wrong,0.92309743,100526 HGn
-32,car,Wrong,0.9190615,4557 JMF
-30,car,Wrong,0.9150738,4234 DZK
-31,car,Wrong,0.92085874,10q526 HGN
+1,car,Right,0.88532335,[0752 G JR
+1,car,Right,0.90831196,[J0752 G JR
+1,car,Right,0.9178265,L0752 G JR
+1,car,Right,0.9156337,"L0752 G,JR"
+1,car,Right,0.89424556,L0752 G JR
+4,car,Right,0.76408875,02835 BSY
+1,car,Right,0.8870627,1L0752 G JR
+4,car,Right,0.65934265,02835 BSY
+1,car,Right,0.92388916,L07529 JR
+4,car,Right,0.7661286,12835 BSY
+1,car,Right,0.8999034,[075245 JR
+4,car,Right,0.660087,2835 BSq
+1,car,Right,0.872851,"[0752,G JRI"
+1,car,Right,0.87825215,10752 G JRI
+1,car,Right,0.84795445,[0752 G JRI
+4,car,Right,0.6590169,[2835 BSY
+1,car,Right,0.8513534,[0752 G JRI
+1,car,Right,0.8520519,No Plate Detected
+4,car,Right,0.730095,[2835 BSD
+1,car,Right,0.75656056,No Plate Detected
+4,car,Right,0.6550143,42035 BSY
+1,car,Right,0.70047355,No Plate Detected
+9,car,Wrong,0.8150602,35553 on
+10,truck,Wrong,0.6691284,0 3693 FSG
+10,truck,Wrong,0.7183035,3693 FSG
+10,car,Wrong,0.61480606,0 3693 FSG
+11,car,Wrong,0.8843127,1357 4 BNW
+10,car,Wrong,0.7195644,3693 FSG
+10,car,Wrong,0.61950815,0 3693 FSG
+10,car,Wrong,0.7123573,3693 FSG
+10,car,Wrong,0.70672345,0 3693 FSG
+10,car,Wrong,0.69424456,0 3693 FSG
+10,car,Wrong,0.6635687,0 3693 FSG
+12,car,Wrong,0.855408,L0262 HFP
+13,car,Wrong,0.8250018,[8934 FR
+14,car,Wrong,0.83133274,5280 0L
+15,car,Wrong,0.7875016,9916 GHS]
+15,car,Wrong,0.8112995,9916 GHS
+15,car,Wrong,0.7811042,9916)oHS]
+15,car,Wrong,0.7952554,19916t5]
+15,car,Wrong,0.83192736,9916 oHS
+15,car,Wrong,0.7718356,9916 0HS
+15,car,Wrong,0.8427315,9916 *HS
+15,car,Wrong,0.76579285,9916 UHS
+15,car,Wrong,0.82298774,9916 oHS]
+16,car,Wrong,0.8659659,47963 JVJ
+15,car,Wrong,0.71764964,9916 GHS
+15,car,Wrong,0.75666976,9916845
+15,car,Wrong,0.8607603,09916 GHS
+15,car,Wrong,0.80250597,09916 GHS:
+15,car,Wrong,0.85273373,L9916 GHS
+15,car,Wrong,0.8613422,09916 CHS
+15,car,Wrong,0.7735104,[9916 GHS
+15,car,Wrong,0.76203865,LE6hb
+17,car,Wrong,0.848142,3092 FRX 
+15,car,Wrong,0.64456755,No Plate Detected
+17,car,Wrong,0.72212285,013092 FRX 
+15,car,Wrong,0.70505714,No Plate Detected
+18,car,Wrong,0.8641904,MA 3043 DFI
+19,car,Wrong,0.8964524,1024 DRJ
+19,car,Wrong,0.87388986,1024 DRJ
+22,car,Wrong,0.8715554,00240}
+23,car,Wrong,0.7705469,L2B4DZ
+24,car,Wrong,0.61314267,10j0526_HGN
+25,car,Wrong,0.83812493,4557 JMF
