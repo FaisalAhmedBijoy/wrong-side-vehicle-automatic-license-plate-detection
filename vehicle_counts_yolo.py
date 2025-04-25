@@ -22,7 +22,7 @@ def process_frame(frame, model, line_y_blue, line_y_yellow, object_status, direc
     """
     Process a single frame to detect vehicles, track their directions, and update the counts.
     """
-    results = model.track(frame, persist=True, classes=[2, 3, 5, 7])
+    results = model.track(frame, persist=True)
     
     if results[0].boxes.data is not None:
         boxes = results[0].boxes.xyxy.cpu().numpy()
