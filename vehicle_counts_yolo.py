@@ -8,7 +8,7 @@ from configurations import Config
 config = Config()
 
 # Load YOLO model
-def load_yolo_model(model_path='models/yolo11n.pt'):
+def load_yolo_model(model_path='models/vehicle_detection_models/vechicle_yolo_model.pt'):
     """Load the YOLO model from the specified path."""
     return YOLO(model_path)
 

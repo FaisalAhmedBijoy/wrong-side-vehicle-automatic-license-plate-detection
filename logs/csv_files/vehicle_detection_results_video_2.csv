@@ -1,66 +1,20 @@
-Track ID,Vehicle Class,Direction,Confidence,Number Plate
-1,car,Right,0.88532335,[0752 G JR
-1,car,Right,0.90831196,[J0752 G JR
-1,car,Right,0.9178265,L0752 G JR
-1,car,Right,0.9156337,"L0752 G,JR"
-1,car,Right,0.89424556,L0752 G JR
-4,car,Right,0.76408875,02835 BSY
-1,car,Right,0.8870627,1L0752 G JR
-4,car,Right,0.65934265,02835 BSY
-1,car,Right,0.92388916,L07529 JR
-4,car,Right,0.7661286,12835 BSY
-1,car,Right,0.8999034,[075245 JR
-4,car,Right,0.660087,2835 BSq
-1,car,Right,0.872851,"[0752,G JRI"
-1,car,Right,0.87825215,10752 G JRI
-1,car,Right,0.84795445,[0752 G JRI
-4,car,Right,0.6590169,[2835 BSY
-1,car,Right,0.8513534,[0752 G JRI
-1,car,Right,0.8520519,No Plate Detected
-4,car,Right,0.730095,[2835 BSD
-1,car,Right,0.75656056,No Plate Detected
-4,car,Right,0.6550143,42035 BSY
-1,car,Right,0.70047355,No Plate Detected
-9,car,Wrong,0.8150602,35553 on
-10,truck,Wrong,0.6691284,0 3693 FSG
-10,truck,Wrong,0.7183035,3693 FSG
-10,car,Wrong,0.61480606,0 3693 FSG
-11,car,Wrong,0.8843127,1357 4 BNW
-10,car,Wrong,0.7195644,3693 FSG
-10,car,Wrong,0.61950815,0 3693 FSG
-10,car,Wrong,0.7123573,3693 FSG
-10,car,Wrong,0.70672345,0 3693 FSG
-10,car,Wrong,0.69424456,0 3693 FSG
-10,car,Wrong,0.6635687,0 3693 FSG
-12,car,Wrong,0.855408,L0262 HFP
-13,car,Wrong,0.8250018,[8934 FR
-14,car,Wrong,0.83133274,5280 0L
-15,car,Wrong,0.7875016,9916 GHS]
-15,car,Wrong,0.8112995,9916 GHS
-15,car,Wrong,0.7811042,9916)oHS]
-15,car,Wrong,0.7952554,19916t5]
-15,car,Wrong,0.83192736,9916 oHS
-15,car,Wrong,0.7718356,9916 0HS
-15,car,Wrong,0.8427315,9916 *HS
-15,car,Wrong,0.76579285,9916 UHS
-15,car,Wrong,0.82298774,9916 oHS]
-16,car,Wrong,0.8659659,47963 JVJ
-15,car,Wrong,0.71764964,9916 GHS
-15,car,Wrong,0.75666976,9916845
-15,car,Wrong,0.8607603,09916 GHS
-15,car,Wrong,0.80250597,09916 GHS:
-15,car,Wrong,0.85273373,L9916 GHS
-15,car,Wrong,0.8613422,09916 CHS
-15,car,Wrong,0.7735104,[9916 GHS
-15,car,Wrong,0.76203865,LE6hb
-17,car,Wrong,0.848142,3092 FRX 
-15,car,Wrong,0.64456755,No Plate Detected
-17,car,Wrong,0.72212285,013092 FRX 
-15,car,Wrong,0.70505714,No Plate Detected
-18,car,Wrong,0.8641904,MA 3043 DFI
-19,car,Wrong,0.8964524,1024 DRJ
-19,car,Wrong,0.87388986,1024 DRJ
-22,car,Wrong,0.8715554,00240}
-23,car,Wrong,0.7705469,L2B4DZ
-24,car,Wrong,0.61314267,10j0526_HGN
-25,car,Wrong,0.83812493,4557 JMF
+Track ID,Vehicle Class,Direction
+1,car,Wrong,0.9094736
+4,car,Wrong,0.65934265
+12,car,Wrong,0.7779781
+10,car,Wrong,0.5844074
+41,car,Wrong,0.37884578
+24,car,Wrong,0.9138173
+23,car,Wrong,0.54795074
+48,car,Wrong,0.8540993
+60,car,Wrong,0.86219984
+63,car,Wrong,0.8062161
+74,car,Wrong,0.8553855
+80,car,Wrong,0.7952554
+83,car,Wrong,0.7686209
+98,motorcycle,Wrong,0.53968036
+85,car,Wrong,0.8673877
+87,car,Wrong,0.86718065
+93,car,Wrong,0.8752202
+103,car,Wrong,0.87637013
+114,car,Wrong,0.73834455
