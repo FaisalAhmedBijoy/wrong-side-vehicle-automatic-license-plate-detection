@@ -60,26 +60,26 @@ Before running the application, ensure the following:
 
 
 
-   ## Output Video
+- Output Video
 
-[![Watch the video](app/outputs/outputs_video/output_video_2.mp4)](app/outputs/outputs_video/output_video_2.mp4)
+   [![Watch the video](app/outputs/outputs_video/output_video_2.mp4)](app/outputs/outputs_video/output_video_2.mp4)
 
-Or download and watch it:  
-[Download Video](app/outputs/outputs_video/output_video_2.mp4)
+   Or download and watch it:  
+      [Download Video](app/outputs/outputs_video/output_video_2.mp4)
 
 ---
 
-## Output CSV
+- Output CSV
 
-[Download CSV](app/outputs/csv_files/vehicle_detection_results_video_2.csv)
+   [Download CSV](app/outputs/csv_files/vehicle_detection_results_video_2.csv)
 
-Here’s a preview:
+   Here’s a preview:
 
-| Frame | Type | Status | Confidence | Plate       |
-|:-----:|:----:|:------:|:----------:|:-----------:|
-| 10    | car  | Wrong  | 0.614806   | 0 3693 FSG  |
-| 11    | car  | Wrong  | 0.884313   | 1357 4 BNW  |
-| 10    | car  | Wrong  | 0.719564   | 3693 FSG    |
+   | Frame | Type | Status | Confidence | Plate       |
+   |:-----:|:----:|:------:|:----------:|:-----------:|
+   | 10    | car  | Wrong  | 0.614806   | 0 3693 FSG  |
+   | 11    | car  | Wrong  | 0.884313   | 1357 4 BNW  |
+   | 10    | car  | Wrong  | 0.719564   | 3693 FSG    |
 
 
 3. **Run Vehicle Detection With GUI**:
