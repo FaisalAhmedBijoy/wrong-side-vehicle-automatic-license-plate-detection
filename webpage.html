@@ -2,60 +2,282 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wrong Side Vehicle Detection</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>License Plate Detection Upload</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      input[type="file"] {
+        margin-bottom: 1rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .output {
+        margin-top: 2rem;
+      }
+
+      .video-section {
+        display: none;
+        margin-top: 2rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .video-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      video {
+        max-width: 100%;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+      }
+
+      .loading-spinner {
+        display: none;
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        color: #007bff;
+      }
+
+      .csv-download {
+        display: none;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .csv-download a {
+        padding: 0.5rem 1rem;
+        background-color: #28a745;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .csv-download a:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Upload Video for License Plate Detection</h2>
+      <form id="upload-form">
+        <input
+          type="file"
+          id="file-upload"
+          name="file"
+          accept="video/*"
+          required
+        />
+        <br />
+        <button type="submit">Upload and Process</button>
+      </form>
+
+      <div class="loading-spinner" id="loading-spinner">
+        Processing your video...
+      </div>
+
+      <div class="output" id="response-output"></div>
+
+      <div class="csv-download" id="csv-link-container">
+        <a id="csv-link" href="#" download>Download Results CSV</a>
+      </div>
+
+      <div class="video-section" id="video-section">
+        <div class="video-container">
+          <h3>Original Video</h3>
+          <video id="original-video" controls>
+            <source id="original-video-source" src="" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="video-container">
+          <h3>Processed Video</h3>
+          <video id="processed-video" controls>
+            <source id="processed-video-source" src="" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+
     <script>
-      function showOutput() {
-        document.getElementById("outputSection").classList.remove("hidden");
+      const form = document.getElementById("upload-form");
+      const output = document.getElementById("response-output");
+      const spinner = document.getElementById("loading-spinner");
+      const fileInput = document.getElementById("file-upload");
+      const videoSection = document.getElementById("video-section");
+      const csvLinkContainer = document.getElementById("csv-link-container");
+      const csvLink = document.getElementById("csv-link");
+
+      const originalVideo = document.getElementById("original-video");
+      const processedVideo = document.getElementById("processed-video");
+      const originalVideoSource = document.getElementById(
+        "original-video-source"
+      );
+      const processedVideoSource = document.getElementById(
+        "processed-video-source"
+      );
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!fileInput.files.length) {
+          alert("Please select a file first!");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        output.innerHTML = "";
+        spinner.style.display = "block";
+        videoSection.style.display = "none";
+        csvLinkContainer.style.display = "none";
+
+        try {
+          const response = await fetch(
+            "http://localhost:8000/yolo-wsd/upload-video/",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          const data = await response.json();
+          console.log(data);
+
+          spinner.style.display = "none";
+
+          // Show original video (local uploaded file)
+          const originalUrl = URL.createObjectURL(fileInput.files[0]);
+          originalVideoSource.src = originalUrl;
+          originalVideo.load();
+
+          // Show processed video (served from server)
+          if (data.output_video) {
+            const filename = data.output_video.split("/").pop(); // Get the file name only
+            // Add a cache-busting query param to force reloading
+            const processedUrl = `http://localhost:8000/results/${filename}?t=${new Date().getTime()}`;
+
+            processedVideo.pause(); // Always pause first
+            processedVideoSource.src = processedUrl;
+            processedVideo.load(); // Force reload the new source
+          }
+
+          // Set CSV download link
+          if (data.results_csv) {
+            const csvFilename = data.results_csv.split("/").pop();
+            const csvUrl = `http://localhost:8000/results/${csvFilename}`;
+            csvLink.href = csvUrl;
+            csvLinkContainer.style.display = "block";
+          }
+
+          videoSection.style.display = "flex";
+
+          output.innerHTML = `
+            <h3>Server Response:</h3>
+            <pre>${JSON.stringify(data, null, 2)}</pre>
+          `;
+
+          setupVideoSync();
+        } catch (err) {
+          spinner.style.display = "none";
+          output.innerHTML = `<p style="color: red;">Error: ${err.message}</p>`;
+        }
+      });
+
+      function setupVideoSync() {
+        let syncing = false;
+
+        originalVideo.addEventListener("play", () => {
+          if (!syncing) {
+            syncing = true;
+            processedVideo.currentTime = originalVideo.currentTime;
+            processedVideo.play().catch(() => {});
+            syncing = false;
+          }
+        });
+
+        processedVideo.addEventListener("play", () => {
+          if (!syncing) {
+            syncing = true;
+            originalVideo.currentTime = processedVideo.currentTime;
+            originalVideo.play().catch(() => {});
+            syncing = false;
+          }
+        });
+
+        originalVideo.addEventListener("pause", () => {
+          if (!syncing) {
+            syncing = true;
+            processedVideo.pause();
+            syncing = false;
+          }
+        });
+
+        processedVideo.addEventListener("pause", () => {
+          if (!syncing) {
+            syncing = true;
+            originalVideo.pause();
+            syncing = false;
+          }
+        });
+
+        originalVideo.addEventListener("seeking", () => {
+          if (!syncing) {
+            syncing = true;
+            processedVideo.currentTime = originalVideo.currentTime;
+            syncing = false;
+          }
+        });
+
+        processedVideo.addEventListener("seeking", () => {
+          if (!syncing) {
+            syncing = true;
+            originalVideo.currentTime = processedVideo.currentTime;
+            syncing = false;
+          }
+        });
       }
     </script>
-  </head>
-  <body class="bg-gray-100 text-gray-800">
-    <header class="bg-red-600 text-white p-4 shadow-md">
-      <h1 class="text-2xl font-bold text-center">
-        Wrong Side Vehicle Detection System
-      </h1>
-    </header>
-
-    <main class="p-6">
-      <!-- Submit Button -->
-      <div class="text-center mb-6">
-        <button
-          onclick="showOutput()"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"
-        >
-          Submit
-        </button>
-      </div>
-
-      <!-- Video Display Area -->
-      <div
-        id="outputSection"
-        class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden"
-      >
-        <!-- Original Video -->
-        <div class="bg-white rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-2">Original Video</h2>
-          <div class="aspect-video w-full">
-            <video controls class="rounded w-full h-full object-cover">
-              <source src="input_video_2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-
-        <!-- Detection Result Video -->
-        <div class="bg-white rounded-lg shadow p-6">
-          <h2 class="text-xl font-semibold mb-2">Detection Result</h2>
-          <div class="aspect-video w-full">
-            <video controls class="rounded w-full h-full object-cover">
-              <source src="output_video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </main>
   </body>
 </html>

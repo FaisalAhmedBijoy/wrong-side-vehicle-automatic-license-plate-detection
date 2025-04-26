@@ -1,19 +1,25 @@
+import uvicorn
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-import shutil
-import os
-import uuid
-import logging
-import uvicorn
+from app.routes.yolo_wsd import router  as yolo_router
+from fastapi.staticfiles import StaticFiles
+from starlette.responses import FileResponse
 
-from app.license_plate_pipeline import run_pipeline  # your import
+# from app.routes import run_pipeline  # your import
+
+class NoCacheStaticFiles(StaticFiles):
+    async def get_response(self, path, scope):
+        response = await super().get_response(path, scope)
+        response.headers["Cache-Control"] = "no-store"
+        return response
+
 
 app = FastAPI()
-
-# Serve static files at /static
-app.mount("/app/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/results", StaticFiles(directory="app/results"), name="results")
+app.mount("/results", NoCacheStaticFiles(directory="app/results"), name="results")
 
 # CORS
 app.add_middleware(
@@ -24,27 +30,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve the uploads.html manually at root
-@app.get("/")
-async def root():
-    return FileResponse("static/uploads.html")
-
-# Upload endpoint
-@app.post("/upload-video/")
-async def upload_video(file: UploadFile = File(...)):
-    temp_video_path = f"temp_videos/{uuid.uuid4()}_{file.filename}"
-    os.makedirs("temp_videos", exist_ok=True)
-
-    with open(temp_video_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    try:
-        output = run_pipeline(temp_video_path)
-        return JSONResponse(content=output)
-    finally:
-        os.remove(temp_video_path)
-
-
+app.include_router(
+    yolo_router,
+    prefix="/yolo-wsd",
+    tags=["app"],
+)
 
 @app.get("/")
 async def get_index():
