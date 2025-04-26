@@ -1,3 +1,12 @@
 easyocr==1.7.2
+fastapi==0.115.12
+gradio==5.27.0
+matplotlib==3.10.1
+numpy==2.2.5
+opencv_python==4.11.0.86
+opencv_python_headless==4.11.0.86
+pandas==2.2.3
+python-dotenv==1.1.0
+starlette==0.46.2
 ultralytics==8.3.65
-python-dotenv==1.0.1
+uvicorn==0.34.2

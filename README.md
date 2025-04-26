@@ -28,17 +28,51 @@ Before running the application, ensure the following:
      - `ultralytics`
      - `opencv-python`
      - `easyocr`
+     - `FastAPI`
      - `gradio`
-3. **Models**:
-   - Place the YOLO vehicle detection model (`yolo11l.pt`) in the `models/` directory.
-   - Place the license plate detection model (`license_plate_detector.pt`) in the `models/` directory.
 
 ---
 
 ## Installation
 
 1. **Clone the Repository**:
+
    ```bash
    git clone https://github.com/yourusername/real-time-yolo-detection.git
    cd real-time-yolo-detection
+   ```
+
+2. **Run Vehicle Detection Without GUI**:
+
+   ```bash
+      python -m app.license_plate_detection
+   ```
+
+   Output video will be saved in the `app/outputs` folder and csv be saved in the `app/outputs` folder.
+
+3. **Run Vehicle Detection With GUI**:
+
+   Run the following command to start the FastAPI server and access the web interface:
+
+   ```bash
+      python -m app.main
+   ```
+
+   Open your web browser and navigate to `http://localhost:8000` to access the application.
+
+   Check the API documentation at `http://localhost:8000/docs` for more details on the available endpoints.
+
+   Another approach is open the `webpage.html` file in your browser to access the web interface.
+   The web interface allows you to upload a video file
+
+   The processed video will be saved in the `app/results` folder and the csv file will be saved in the `app/results` folder.
+
+   Server Response:
+
+   ```json
+   {
+     "message": "Processing complete",
+     "output_video": "app/results/processed_a15ef89a-8907-4089-9ec5-d9643946e45e.mp4",
+     "results_csv": "app/results/output_2569bc76-ee74-4d5f-9681-51ab09f58ea9.csv"
+   }
    ```

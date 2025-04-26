@@ -43,7 +43,7 @@ async def get_result_video(filename: str):
 
 @app.get("/")
 async def get_index():
-    return {"message": "Hello route triggered!"}
+    return FileResponse("app/static/uploads.html")
 
 # Entry point for running the application
 def run():
