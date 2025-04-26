@@ -62,6 +62,8 @@ Before running the application, ensure the following:
 
    Check the API documentation at `http://localhost:8000/docs` for more details on the available endpoints.
 
+   ![](logs/readne_images/Screenshot%202025-04-26%20222211.png)
+
    Another approach is open the `webpage.html` file in your browser to access the web interface.
    The web interface allows you to upload a video file
 
