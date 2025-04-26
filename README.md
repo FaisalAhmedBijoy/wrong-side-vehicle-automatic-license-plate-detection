@@ -20,8 +20,16 @@ This project demonstrates real-time vehicle and license plate detection using YO
 
 Before running the application, ensure the following:
 
-1. **Python Version**: Python 3.8 or higher.
+1. **Python Version**: Python 3.10 or higher.
 2. **Dependencies**:
+   - Create a virtual environment:
+     ```bash
+     conda create -n YOLO python=3.10
+     ```
+   - activate the virtual environment:
+     ```bash
+     conda activate YOLO
+     ```
    - Install the required Python packages:
      ```bash
      pip install -r requirements.txt
@@ -31,6 +39,7 @@ Before running the application, ensure the following:
      - `opencv-python`
      - `easyocr`
      - `FastAPI`
+
 ---
 
 ## Installation
@@ -38,8 +47,7 @@ Before running the application, ensure the following:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/real-time-yolo-detection.git
-   cd real-time-yolo-detection
+   git clone https://github.com/FaisalAhmedBijoy/automatic-license-plate-detection
    ```
 
 2. **Run Vehicle Detection Without GUI**:
@@ -49,6 +57,30 @@ Before running the application, ensure the following:
    ```
 
    Output video will be saved in the `app/outputs` folder and csv be saved in the `app/outputs` folder.
+
+
+
+   ## Output Video
+
+[![Watch the video](app/outputs/outputs_video/output_video_2.mp4)](app/outputs/outputs_video/output_video_2.mp4)
+
+Or download and watch it:  
+[Download Video](app/outputs/outputs_video/output_video_2.mp4)
+
+---
+
+## Output CSV
+
+[Download CSV](app/outputs/csv_files/vehicle_detection_results_video_2.csv)
+
+Here’s a preview:
+
+| Frame | Type | Status | Confidence | Plate       |
+|:-----:|:----:|:------:|:----------:|:-----------:|
+| 10    | car  | Wrong  | 0.614806   | 0 3693 FSG  |
+| 11    | car  | Wrong  | 0.884313   | 1357 4 BNW  |
+| 10    | car  | Wrong  | 0.719564   | 3693 FSG    |
+
 
 3. **Run Vehicle Detection With GUI**:
 
