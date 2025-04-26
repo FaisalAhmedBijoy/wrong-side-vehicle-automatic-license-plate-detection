@@ -6,8 +6,8 @@ import numpy as np
 from ultralytics import YOLO
 from collections import defaultdict
 
-from configurations import Config
-from road_line_draw_algo import detect_road_lines
+from app.configurations import Config
+from app.road_line_draw_algo import detect_road_lines
 
 config = Config()
 line_y_blue_list = []

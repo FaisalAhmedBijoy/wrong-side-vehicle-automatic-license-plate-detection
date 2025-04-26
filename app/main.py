@@ -5,13 +5,15 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 import uuid
+import logging
+import uvicorn
 
-from license_plate_pipeline import run_pipeline  # your import
+from app.license_plate_pipeline import run_pipeline  # your import
 
 app = FastAPI()
 
 # Serve static files at /static
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/app/static", StaticFiles(directory="app/static"), name="static")
 
 # CORS
 app.add_middleware(
@@ -41,3 +43,17 @@ async def upload_video(file: UploadFile = File(...)):
         return JSONResponse(content=output)
     finally:
         os.remove(temp_video_path)
+
+
+
+@app.get("/")
+async def get_index():
+    return {"message": "Hello route triggered!"}
+
+# Entry point for running the application
+def run():
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")
+
+
+if __name__ == "__main__":
+    run()

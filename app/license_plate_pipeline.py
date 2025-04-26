@@ -1,5 +1,5 @@
-from configurations import Config
-from main import (
+from app.configurations import Config
+from app.license_plate_detection import (
     load_yolo_model,
     process_video,
 )
@@ -12,8 +12,8 @@ def run_pipeline(video_path: str):
     plate_model = load_yolo_model(config.LICENSE_PLATE_DETECTION_MODEL)
     ocr_reader = easyocr.Reader(['en'], gpu=False)
 
-    results_csv = f"results/output_{uuid.uuid4()}.csv"
-    output_video_path = f"results/processed_{uuid.uuid4()}.mp4"
+    results_csv = f"app/results/output_{uuid.uuid4()}.csv"
+    output_video_path = f"app/results/processed_{uuid.uuid4()}.mp4"
 
     line_y_blue = int(config.LINE_Y_BLUE)
     line_y_yellow = int(config.LINE_Y_YELLOW)
