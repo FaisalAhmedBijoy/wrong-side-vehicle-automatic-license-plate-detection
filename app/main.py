@@ -36,6 +36,11 @@ app.include_router(
     tags=["app"],
 )
 
+@app.get("/results/{filename}")
+async def get_result_video(filename: str):
+    filepath = f"app/results/{filename}"
+    return FileResponse(filepath, media_type="video/mp4")
+
 @app.get("/")
 async def get_index():
     return {"message": "Hello route triggered!"}

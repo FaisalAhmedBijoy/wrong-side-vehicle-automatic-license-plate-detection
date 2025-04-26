@@ -1,69 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wrong Side Vehicle Detection</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    function showOutput() {
-      const input = document.getElementById('videoInput');
-      if (!input.files.length) {
-        alert("Please upload a video file before submitting.");
-        return;
-      }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wrong Side Vehicle Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-red-600 text-white p-4 shadow-md">
+      <h1 class="text-2xl font-bold text-center">
+        Wrong Side Vehicle Detection System
+      </h1>
+    </header>
 
-      // In a real app, you'd handle the file upload here
-
-      document.getElementById('outputSection').classList.remove('hidden');
-    }
-  </script>
-</head>
-<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
-  <header class="bg-red-600 text-white p-4 shadow-md">
-    <h1 class="text-2xl font-bold text-center">Wrong Side Vehicle Detection System</h1>
-  </header>
-
-  <main class="p-6 pb-12">
-    <!-- File Upload -->
-    <div class="max-w-md mx-auto mb-6">
-      <label for="videoInput" class="block text-lg font-medium text-gray-700 mb-2">
-        Upload Input Video
-      </label>
-      <input type="file" id="videoInput" accept="video/*" class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 p-2 bg-white shadow-sm">
-    </div>
-
-    <!-- Submit Button -->
-    <div class="text-center mt-12">
-      <button onclick="showOutput()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
-        Submit
-      </button>
-    </div>
-
-    <!-- Video Display Area -->
-    <div id="outputSection" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 hidden">
-      <!-- Original Video -->
-      <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold mb-2">Original Video</h2>
-        <div class="aspect-video w-full">
-          <video controls class="rounded w-full h-full object-cover">
-            <source src="input_video_2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+    <!-- Main Section -->
+    <main class="p-6 pb-12">
+      <!-- File Upload -->
+      <div class="max-w-md mx-auto mb-6">
+        <label
+          for="inputVideo"
+          class="block text-lg font-medium text-gray-700 mb-2"
+        >
+          Upload Input Video
+        </label>
+        <input
+          type="file"
+          id="inputVideo"
+          accept="video/*"
+          class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 p-2 bg-white shadow-sm"
+        />
       </div>
 
-      <!-- Detection Result Video -->
-      <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold mb-2">Detection Result</h2>
-        <div class="aspect-video w-full">
-          <video controls class="rounded w-full h-full object-cover">
-            <source src="output_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+      <!-- Submit Button -->
+      <div class="text-center mt-12">
+        <button
+          id="uploadBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"
+        >
+          Submit
+        </button>
+      </div>
+
+      <!-- Video Display Area -->
+      <div
+        id="outputSection"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 hidden"
+      >
+        <!-- Original Video -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-2">Original Video</h2>
+          <div class="aspect-video w-full">
+            <video
+              id="originalVideo"
+              controls
+              class="rounded w-full h-full object-cover"
+            >
+              <source id="originalVideoSource" src="" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- Detection Result Video -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-semibold mb-2">Detection Result</h2>
+          <div class="aspect-video w-full">
+            <video
+              id="processedVideo"
+              controls
+              class="rounded w-full h-full object-cover"
+            >
+              <source id="processedVideoSource" src="" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-</body>
+    </main>
+
+    <!-- JavaScript Section -->
+    <script>
+      const uploadBtn = document.getElementById("uploadBtn");
+      const inputVideo = document.getElementById("inputVideo");
+      const outputSection = document.getElementById("outputSection");
+
+      const originalVideo = document.getElementById("originalVideo");
+      const originalVideoSource = document.getElementById(
+        "originalVideoSource"
+      );
+
+      const processedVideo = document.getElementById("processedVideo");
+      const processedVideoSource = document.getElementById(
+        "processedVideoSource"
+      );
+
+      uploadBtn.addEventListener("click", async () => {
+        if (!inputVideo.files.length) {
+          alert("Please upload a video file before submitting.");
+          return;
+        }
+
+        const file = inputVideo.files[0];
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+          // Send video to backend (adjust your endpoint if different)
+          const response = await fetch("http://localhost:8000/upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to upload video");
+          }
+
+          const data = await response.json();
+
+          // Show output section
+          outputSection.classList.remove("hidden");
+
+          // Set Original Video
+          const inputUrl = `http://localhost:8000/uploads/${
+            file.name
+          }?t=${new Date().getTime()}`;
+          originalVideo.pause();
+          originalVideoSource.src = inputUrl;
+          originalVideo.load();
+
+          // Set Processed Video
+          if (data.output_video) {
+            const filename = data.output_video.split("/").pop();
+            const processedUrl = `http://localhost:8000/results/${filename}?t=${new Date().getTime()}`;
+
+            processedVideo.pause();
+            processedVideoSource.src = processedUrl;
+            processedVideo.load();
+
+            processedVideo.addEventListener(
+              "canplay",
+              () => {
+                processedVideo.play().catch((e) => {
+                  console.log("Autoplay blocked or failed:", e);
+                });
+              },
+              { once: true }
+            );
+          }
+        } catch (error) {
+          console.error(error);
+          alert("An error occurred while uploading or processing the video.");
+        }
+      });
+    </script>
+  </body>
 </html>
