@@ -1,6 +1,8 @@
 # Real-Time YOLO License Plate Detection
 
-This project demonstrates real-time vehicle and license plate detection using YOLO (You Only Look Once) and OpenCV. It processes videos to detect vehicles and license plates, and performs live tracking with bounding boxes and OCR (optical character recognition) for license plate text extraction. The output video is saved to disk, and live detection results are displayed in a resized OpenCV window.
+This project demonstrates real-time vehicle and license plate detection using YOLO (You Only Look Once) and OpenCV. It processes videos to detect vehicles and license plates, extract bounding boxes and OCR (optical character recognition) for license plate text extraction. The output video is saved to disk, and live detection results are displayed in a resized OpenCV window.
+
+![](logs/readme_images/homepage.png)
 
 ---
 
@@ -29,8 +31,6 @@ Before running the application, ensure the following:
      - `opencv-python`
      - `easyocr`
      - `FastAPI`
-     - `gradio`
-
 ---
 
 ## Installation
@@ -62,7 +62,7 @@ Before running the application, ensure the following:
 
    Check the API documentation at `http://localhost:8000/docs` for more details on the available endpoints.
 
-   ![](logs/readne_images/Screenshot%202025-04-26%20222211.png)
+   ![](logs/readme_images/Screenshot%202025-04-26%20222211.png)
 
    Another approach is open the `webpage.html` file in your browser to access the web interface.
    The web interface allows you to upload a video file
