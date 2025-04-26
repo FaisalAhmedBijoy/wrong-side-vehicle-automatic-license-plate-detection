@@ -7,7 +7,7 @@ from ultralytics import YOLO
 from collections import defaultdict
 
 from app.configurations import Config
-from app.road_line_draw_algo import detect_road_lines
+from app.road_line_drawing import detect_road_lines
 
 config = Config()
 line_y_blue_list = []
