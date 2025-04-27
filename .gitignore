@@ -4,3 +4,4 @@ __pycache__
 *.pyo
 *.pyd
 results
+app/temp_videos

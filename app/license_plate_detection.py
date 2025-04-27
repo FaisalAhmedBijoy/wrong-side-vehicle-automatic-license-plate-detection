@@ -74,7 +74,10 @@ def process_frame(frame,
         boxes = vehicle_results[0].boxes.xyxy.cpu().numpy()
         class_indices = vehicle_results[0].boxes.cls.int().cpu().numpy().tolist()
         confidences = vehicle_results[0].boxes.conf.cpu().numpy()
-        track_ids = vehicle_results[0].boxes.id.int().cpu().numpy().tolist()
+
+        track_ids = []
+        if vehicle_results[0].boxes.id is not None:
+            track_ids = vehicle_results[0].boxes.id.int().cpu().numpy().tolist()
 
         for box, track_id, class_idx, conf in zip(boxes, track_ids, class_indices, confidences):
             x1, y1, x2, y2 = map(int, box)
@@ -99,9 +102,7 @@ def process_frame(frame,
 
             direction = None
             if object_status[track_id]["yellow"] and not object_status[track_id]["blue"]:
-                direction = "Right"
-                direction_counts["right_direction"] += 1
-                class_counts[class_name]["right"] += 1
+                print("Vehicle crossed the yellow line.")
             elif object_status[track_id]["blue"] and not object_status[track_id]["yellow"]:
                 direction = "Wrong"
                 direction_counts["wrong_direction"] += 1

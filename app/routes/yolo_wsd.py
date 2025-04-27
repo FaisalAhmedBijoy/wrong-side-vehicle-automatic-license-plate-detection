@@ -23,11 +23,13 @@ async def upload_video(file: UploadFile = File(...)):
     temp_video_path = f"app/temp_videos/{uuid.uuid4()}_{file.filename}"
     os.makedirs("app/temp_videos", exist_ok=True)
 
-    with open(temp_video_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
     try:
+        with open(temp_video_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        file.file.close()  # ✅ Close the uploaded file properly
+
         output = run_pipeline(temp_video_path)
         return JSONResponse(content=output)
     finally:
-        os.remove(temp_video_path)
+        if os.path.exists(temp_video_path):
+            os.remove(temp_video_path)

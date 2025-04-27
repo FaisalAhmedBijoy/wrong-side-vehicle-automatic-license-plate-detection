@@ -1,0 +1,17 @@
+Track ID,Vehicle Class,Direction,Confidence,Number Plate
+1,car,Wrong,0.8603305,No Plate Detected
+1,car,Wrong,0.8473312,No Plate Detected
+4,car,Wrong,0.78972924,No Plate Detected
+4,car,Wrong,0.77082735,No Plate Detected
+4,car,Wrong,0.7348568,No Plate Detected
+4,car,Wrong,0.6530678,
+4,car,Wrong,0.78350097,No Plate Detected
+3,truck,Wrong,0.79500395,
+4,car,Wrong,0.68384355,
+3,truck,Wrong,0.660259,
+4,car,Wrong,0.7936525,No Plate Detected
+3,truck,Wrong,0.7904057,
+3,truck,Wrong,0.8278613,
+3,truck,Wrong,0.75787884,No Plate Detected
+3,truck,Wrong,0.79093826,No Plate Detected
+3,truck,Wrong,0.7143072,No Plate Detected

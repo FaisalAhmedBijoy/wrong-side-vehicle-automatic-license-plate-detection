@@ -1,26 +1,4 @@
 Track ID,Vehicle Class,Direction,Confidence,Number Plate
-1,car,Right,0.88532335,[0752 G JR
-1,car,Right,0.90831196,[J0752 G JR
-1,car,Right,0.9178265,L0752 G JR
-1,car,Right,0.9156337,"L0752 G,JR"
-1,car,Right,0.89424556,L0752 G JR
-4,car,Right,0.76408875,02835 BSY
-1,car,Right,0.8870627,1L0752 G JR
-4,car,Right,0.65934265,02835 BSY
-1,car,Right,0.92388916,L07529 JR
-4,car,Right,0.7661286,12835 BSY
-1,car,Right,0.8999034,[075245 JR
-4,car,Right,0.660087,2835 BSq
-1,car,Right,0.872851,"[0752,G JRI"
-1,car,Right,0.87825215,10752 G JRI
-1,car,Right,0.84795445,[0752 G JRI
-4,car,Right,0.6590169,[2835 BSY
-1,car,Right,0.8513534,[0752 G JRI
-1,car,Right,0.8520519,No Plate Detected
-4,car,Right,0.730095,[2835 BSD
-1,car,Right,0.75656056,No Plate Detected
-4,car,Right,0.6550143,42035 BSY
-1,car,Right,0.70047355,No Plate Detected
 9,car,Wrong,0.8150602,35553 on
 10,truck,Wrong,0.6691284,0 3693 FSG
 10,truck,Wrong,0.7183035,3693 FSG
