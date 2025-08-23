@@ -2,43 +2,134 @@
 
 This project demonstrates real-time vehicle and license plate detection using YOLO (You Only Look Once) and OpenCV. It processes videos to detect vehicles and license plates, extract bounding boxes and OCR (optical character recognition) for license plate text extraction. The output video is saved to disk, and live detection results are displayed in a resized OpenCV window.
 
-![](logs/readme_images/homepage.png)
+
+- Input Vehicle Image
+
+![](app/data/images/car_1.png)
+
+- Extracted Vehicle License Plate Number
+
+![](app/data/images/license_plate.png)
+## Project Overview
+
+The system performs the following tasks in real-time:
+- Vehicle detection and tracking using YOLOv10
+- License plate detection using a custom-trained YOLO model
+- Optical Character Recognition (OCR) using EasyOCR
+- Vehicle direction analysis using road line detection
+- Performance metrics tracking and visualization
+- CSV output generation with detailed detection results
+
+### Key Components:
+- **Vehicle Detection**: Uses YOLOv10 for accurate vehicle classification
+- **License Plate Detection**: Custom YOLO model trained for license plate recognition
+- **OCR Processing**: EasyOCR implementation for text extraction from plates
+- **Direction Analysis**: Tracks vehicle movement relative to detected road lines
+- **Performance Optimization**: Configurable FPS reduction and window resizing
 
 ---
 
 ## Features
 
-- **YOLO-Based Detection**: Detects vehicles and license plates in uploaded or live videos.
-- **Real-Time Processing**: Displays live output in a resized window for better performance.
-- **Customizable FPS Reduction**: Allows users to reduce the number of processed frames for faster performance.
-- **License Plate OCR**: Uses EasyOCR to extract text from detected license plates.
-- **Video Saving**: Outputs the processed video with bounding boxes to disk.
+### Detection and Recognition
+- **YOLO-Based Detection**: Detects vehicles and license plates in uploaded or live videos
+- **Multi-Model Architecture**: 
+  - Vehicle Detection: YOLOv10 model trained for vehicle classification
+  - License Plate Detection: Custom YOLO model optimized for plate recognition
+- **Comprehensive Tracking**: Vehicle tracking with unique IDs for consistent detection
+- **Direction Analysis**: Intelligent road line detection for vehicle movement tracking
+
+### Processing and Performance
+- **Real-Time Processing**: Live output display with configurable window size
+- **Performance Optimization**:
+  - Customizable FPS reduction for resource management
+  - Batch processing capabilities
+  - Configurable confidence thresholds
+- **Preprocessing Pipeline**: Image enhancement for improved OCR accuracy
+  
+### Output and Analytics
+- **License Plate OCR**: EasyOCR integration for accurate text extraction
+- **Multi-format Output**:
+  - Processed video with annotations
+  - CSV reports with detection details
+  - Performance metrics and visualizations
+- **Detailed Logging**: Comprehensive logging of detection events and system performance
+
+### Web Interface
+- **FastAPI Backend**: RESTful API for video processing
+- **User-Friendly Frontend**: Simple web interface for video upload and processing
+- **Real-Time Status**: Processing status updates and progress tracking
+- **Results Visualization**: Interactive display of detection results
 
 ---
+
+## Technical Details
+
+### Model Architecture
+- **Vehicle Detection**: 
+  - YOLOv10 model with optimized backbone
+  - Confidence threshold: 0.6
+  - Image size: 640x640
+  - Track persistence enabled for consistent detection
+
+- **License Plate Detection**:
+  - Custom-trained YOLO model
+  - Specialized for license plate detection
+  - High-precision detection with custom preprocessing
+
+- **OCR System**:
+  - EasyOCR implementation
+  - Pre-processing pipeline for enhanced text extraction
+  - Support for multiple plate formats
+
+### Performance Optimization
+- **Frame Processing**:
+  - Configurable FPS reduction
+  - Batch processing support
+  - Automatic window resizing
+  - Real-time performance monitoring
+
+- **Direction Analysis**:
+  - Dynamic road line detection
+  - Movement tracking algorithm
+  - Direction classification system
+
+### Output Generation
+- **Video Processing**:
+  - Annotated frames with detected objects
+  - Bounding box visualization
+  - Real-time OCR results display
+
+- **Data Analytics**:
+  - CSV generation with detection details
+  - Performance metrics logging
+  - Statistical analysis capabilities
 
 ## Prerequisites
 
 Before running the application, ensure the following:
 
-1. **Python Version**: Python 3.10 or higher.
+1. **Python Version**: Python 3.12 or higher
 2. **Dependencies**:
    - Create a virtual environment:
      ```bash
-     conda create -n YOLO python=3.10
+     conda create -n YOLO python=3.12
      ```
-   - activate the virtual environment:
+   - Activate the virtual environment:
      ```bash
      conda activate YOLO
      ```
-   - Install the required Python packages:
+   - Install required packages:
      ```bash
      pip install -r requirements.txt
      ```
-   - Required libraries include:
-     - `ultralytics`
-     - `opencv-python`
-     - `easyocr`
-     - `FastAPI`
+   - Core dependencies:
+     - `ultralytics`: YOLOv10 implementation
+     - `opencv-python`: Image processing
+     - `easyocr`: License plate text extraction
+     - `FastAPI`: Web API framework
+     - `numpy`: Numerical operations
+     - `pandas`: Data handling
 
 ---
 
