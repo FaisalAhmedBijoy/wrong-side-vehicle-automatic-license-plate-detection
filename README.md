@@ -1,4 +1,4 @@
-# Real-Time YOLO License Plate Detection
+# Real-Time Wrong Side Vehicle License Plate Detection
 
 This project demonstrates real-time vehicle and license plate detection using YOLO (You Only Look Once) and OpenCV. It processes videos to detect vehicles and license plates, extract bounding boxes and OCR (optical character recognition) for license plate text extraction. The output video is saved to disk, and live detection results are displayed in a resized OpenCV window.
 
